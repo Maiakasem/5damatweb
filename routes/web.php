@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VideoController;
+use App\Http\Controllers\BackEnd\VideoController;
 use App\Http\Controllers\BackEnd\TagController;
 use App\Http\Controllers\BackEnd\PageController;
 use App\Http\Controllers\BackEnd\UserController;

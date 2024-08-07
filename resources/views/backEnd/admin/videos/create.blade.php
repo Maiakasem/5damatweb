@@ -13,13 +13,13 @@
                       
                    
 @endcomponent
-<form action="{{route('pages.store')}}" method="post">
+<form action="{{route('videos.store')}}" method="post">
                            
-                           @include('backEnd.admin.pages.form')
+                           @include('backEnd.admin.videos.form')
                             
 
                            
-                            <button type="submit" class="btn btn-primary pull-right">Add Page</button>
+                            <button type="submit" class="btn btn-primary pull-right">Add Video</button>
                             <div class="clearfix"></div>
 
                         </form>

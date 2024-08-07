@@ -27,9 +27,9 @@ class Store extends FormRequest
         'meta_keywords'=>['max:255'],
         'meta_des'=>['max:255'],
         'youtube'=>['required','url','min:10'],
-        'cat_id'=>['required','integar'],
+        'cat_id'=>['required'],
         'published'=>['required'],
-        'image'=>['required','image']
+        'image'=>['required']
         ];
     }
 }

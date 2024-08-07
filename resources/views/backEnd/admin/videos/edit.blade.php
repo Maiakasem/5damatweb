@@ -14,7 +14,7 @@
 
 <form action="{{ route($routeName.'.update', [$IdName => $row->id]) }}" method="post">
                            {{method_field('put')}}
-                           @include('backEnd.admin.pages.form')
+                           @include('backEnd.admin.videos.form')
                             
                     </div>
                            

@@ -15,7 +15,7 @@
                     
                     @slot('addButton')
                         <div class="col-md-4 text-right">
-                            <a href="{{route($routeName.'.create')}}" class="btn btn-white btn-round">Add Page<div class="ripple-container"></div></a>
+                            <a href="{{route($routeName.'.create')}}" class="btn btn-white btn-round">Add Video<div class="ripple-container"></div></a>
                         </div>
                     @endslot
                     <div class="table-responsive">
@@ -32,7 +32,7 @@
                                 Published
                                 </th>
                                 <th>
-                                category
+                                Category
                                 </th>
                                 <th>
                                 User
@@ -49,11 +49,14 @@
                                     <tr>
                                     <th>{{$i}}</th>
                                     <th>{{$row->name}}</th>
+                                    <th>{{$row->published}}</th>
+                                    <th>{{$row->cat->name}}</th>
+                                    <th>{{$row->user->name}}</th>
                                    
                                     <td class="td-actions text-left">
                                         <div class="btn-group" role="group" aria-label="Action buttons">
                                             @include('backEnd.shared.buttons.edit')
-                                            @include('backEnd.shared.buttons.delete', ['routeName' => "pages"])
+                                            @include('backEnd.shared.buttons.delete', ['routeName' => "videos"])
                                         </div>
                                     </td>
                                     </tr>
