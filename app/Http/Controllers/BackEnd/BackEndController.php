@@ -19,6 +19,10 @@ class BackEndController extends Controller
     {
         $rows=$this->model;
         $rows=$this->filter($rows);
+        $with=$this->with();
+        if (!empty($with)){
+            $rows=$rows->with($with);
+        }
         $rows=$rows->paginate(10);
 
         $moduleName=$this->pluralModelName();
@@ -40,8 +44,9 @@ class BackEndController extends Controller
         $folderName=$this->getClassNameFromModel();
         $pageDesc="Here you can add ".$folderName;
         $IdName=$this->getId();
-        
-        return view('backend.admin.'.$folderName.'.create',compact('moduleName','pageTitle','pageDesc','folderName','IdName'));
+        $append = $this->append();
+       
+        return view('backend.admin.'.$folderName.'.create',compact('moduleName','pageTitle','pageDesc','folderName','IdName'))->with($append);
     }
 
 
@@ -66,9 +71,10 @@ class BackEndController extends Controller
         $routeName=$this->getClassNameFromModel();
         $pageDesc="Here you can edit ".$folderName;
         $IdName=$this->getId();
+        $append = $this->append();
        
-        
-        return view ('backend.admin.'. $folderName.'.edit',compact('row','moduleName','pageTitle','pageDesc','folderName','routeName','IdName'));
+      
+        return view ('backend.admin.'. $folderName.'.edit',compact('row','moduleName','pageTitle','pageDesc','folderName','routeName','IdName'))->with($append);
     }
    
     
@@ -106,5 +112,13 @@ class BackEndController extends Controller
     protected function getId(){
        return strtolower($this->getModelName());
        
+    }
+
+    protected function with(){
+        return [];
+    }
+
+    protected function append(){
+        return [];
     }
 }

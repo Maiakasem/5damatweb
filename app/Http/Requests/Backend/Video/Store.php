@@ -29,7 +29,8 @@ class Store extends FormRequest
         'youtube'=>['required','url','min:10'],
         'cat_id'=>['required'],
         'published'=>['required'],
-        'image'=>['required']
+        'image'=>['required'],
+       
         ];
     }
 }

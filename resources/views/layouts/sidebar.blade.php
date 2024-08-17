@@ -47,5 +47,11 @@
               <p>Pages</p>
            </a>
           </li>
+          <li class="nav-item {{is_active('videos')}}">
+            <a class="nav-link" href="{{route('videos.index')}}">
+              <i class="material-icons">content_paste</i>
+              <p>Videos</p>
+           </a>
+          </li>
         </ul>
       </div>

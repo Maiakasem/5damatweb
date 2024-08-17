@@ -20,7 +20,8 @@ class Video extends Model
         'user_id',
         'cat_id',
         'published',
-        'image'
+        'image',
+        'skill_id'
     ];
 
     public function user(){
@@ -31,5 +32,6 @@ class Video extends Model
     }
     public function skills(){
         return $this->belongsToMany(Skill::class,'skills_videos');
+
     }
 }
