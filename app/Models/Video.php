@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Video extends Model
 {
@@ -32,6 +33,10 @@ class Video extends Model
     }
     public function skills(){
         return $this->belongsToMany(Skill::class,'skills_videos');
+
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class,'tags_videos');
 
     }
 }

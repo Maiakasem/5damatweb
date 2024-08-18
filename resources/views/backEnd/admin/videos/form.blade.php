@@ -84,10 +84,26 @@
                                 <div class="col-md-4">
                                             <div class="form-floating mb-3">    
                                                 <label for="floatingInput1">Video Iamge</label>
-                                                <input type="text" class="form-control" id="floatingInput1" name="image" value="{{isset($row)? $row->name :''}}" >
+                                                <input type="file"  id="floatingInput1" name="image"  >
                                             </div>
+                                </div>
+                               
+                                <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <label for="example-multiple-select"> Video Tags </label>
+                                            <select name="tags[]"  id="example-multiple-select" class="form-control select2" multiple="multiple">
+                                                
+                                                @foreach($tags as $tag)
+                                                    <option value="{{$tag->id}}" 
+                                                         {{in_array ($tag->id,$selectedTags)? 'selected' : ''}}
+                                                            style="color: black;">
+                                                        {{$tag->name}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                 </div>
+                            </div>
                             <div class="row">
                                     <div class="col-md-12">
                                             <div class="form-floating mb-3">    

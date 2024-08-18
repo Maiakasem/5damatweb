@@ -49,7 +49,13 @@
                                     <tr>
                                     <th>{{$i}}</th>
                                     <th>{{$row->name}}</th>
-                                    <th>{{$row->published}}</th>
+                                    <th>
+                                        @if ($row->published==1)
+                                        Published
+                                        @else
+                                        Hidden
+                                        @endif
+                                       </th>
                                     <th>{{$row->cat->name}}</th>
                                     <th>{{$row->user->name}}</th>
                                    

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
+use App\Models\Tag;
 use App\Models\Skill;
 use App\Models\Video;
 use App\Models\Category;
@@ -24,12 +25,19 @@ class VideoController extends BackEndController
         $array=[
             "categories"=> Category::get(),
             "skills"=>Skill::get(),
-            "selectedSkills"=>[]
+            "tags"=>Tag::get(),
+            "selectedSkills"=>[],
+            "selectedTags"=>[]
 
         ];
 
         if(request()->route()->parameter('video')){
             $array['selectedSkills']= $this->model->find(request()->route()->parameter('video'))
+            ->skills()->get()->pluck('id')->toArray();
+           
+        };
+        if(request()->route()->parameter('video')){
+            $array['selectedTags']= $this->model->find(request()->route()->parameter('video'))
             ->skills()->get()->pluck('id')->toArray();
            
         };
@@ -47,10 +55,7 @@ class VideoController extends BackEndController
         $requestArray=$request->all() +['user_id'=>auth()->user()->id];
         $row=$this->model->create($requestArray);
        
-        if(isset($requestArray['skills']) && !empty($requestArray['skills'])){
-
-            $row->skills()->sync($requestArray['skills']);
-        }
+        $this->syncTagsSkills($row,$requestArray);
        
        
         return redirect()->route('videos.index');
@@ -67,12 +72,19 @@ class VideoController extends BackEndController
         $row=$this->model->FindOrFail($video);      
         $requestArray=$request->all();
         $row->update($requestArray);
+        
+        
+        return redirect()->route('videos.index');
+    }
+
+    protected function syncTagsSkills ($row,$requestArray){
         if(isset($requestArray['skills']) && !empty($requestArray['skills'])){
             $row->skills()->sync($requestArray['skills']);
         }
        
-     
-        
-        return redirect()->route('videos.index');
+        if(isset($requestArray['tags']) && !empty($requestArray['tags'])){
+
+            $row->tags()->sync($requestArray['tags']);
+        }
     }
 }
